@@ -1,9 +1,9 @@
 var sketchProc = function(processing) {
 
-    //var img = processing.loadImage("photo.jpg");
-
+    // define screen data
     var screenSize = [ 800, 600 ];
 
+    // define object data
     var objects = [
             [
                 10, // x
@@ -40,7 +40,7 @@ var sketchProc = function(processing) {
                 8,
                 15
             ]
-        ]
+        ];
 
     var x = 10,
         y = 10;
@@ -127,11 +127,6 @@ var sketchProc = function(processing) {
 
         // draw all objects
         for (var i = 0; i < objects.length; i++) {
-
-            //console.log("drawing object " + i);
-            //console.log("object array")
-
-            //console.log(objects[i]);
 
             // get a convenient reference to the current object
             var currentObject = objects[i];
