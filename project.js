@@ -5,41 +5,41 @@ var sketchProc = function(processing) {
 
     // define object data
     var objects = [
-            [
-                10, // x
-                30, // y
-                60, // size
-                10, // x speed
-                5   // y speed
-            ],
-            [
-                10, // x
-                10, // y
-                30, // size
-                5,  // x speed
-                2   // y speed
-            ],
-            [
-                50, // x
-                20, // y
-                50, // size
-                2,  // x speed
-                5   // y speed
-            ],
-            [
-                100, // x
-                70,  // y
-                40,  // size
-                10,  // x speed
-                7    // y speed
-            ],
-            [
-                89,
-                30,
-                52,
-                8,
-                15
-            ]
+            {
+                x: 10,
+                y: 30,
+                size: 60,
+                xVelocity: 10,
+                yVelocity: 5
+            },
+            {
+                x: 10,
+                y: 10,
+                size: 30,
+                xVelocity: 5,
+                yVelocity: 2
+            },
+            {
+                x: 50,
+                y: 20,
+                size: 50,
+                xVelocity: 2,
+                yVelocity: 5
+            },
+            {
+                x: 100,
+                y: 70,
+                size: 40,
+                xVelocity: 10,
+                yVelocity: 7
+            },
+            {
+                x: 89,
+                y: 30,
+                size: 52,
+                xVelocity: 8,
+                yVelocity: 15
+            }
         ];
 
     var x = 10,
@@ -74,9 +74,9 @@ var sketchProc = function(processing) {
             var o = objects[i];
 
             // does object collide with right side of screen?
-            if (o[0] > screenSize[0] - o[2]) {
+            if (o.x > screenSize[0] - o.size) {
                 console.log("object " + i + " collided with right-hand wall");
-                o[3] = -o[3];
+                o.xVelocity = -o.xVelocity;
             }
         }
 
@@ -87,9 +87,9 @@ var sketchProc = function(processing) {
             var o = objects[i];
 
             // does object collide with left side of screen?
-            if (o[0] < 0) {
+            if (o.x < 0) {
                 console.log("object " + i + " collided with left-hand wall");
-                o[3] = -o[3];
+                o.xVelocity = -o.xVelocity;
             }
         }
 
@@ -100,9 +100,9 @@ var sketchProc = function(processing) {
             var o = objects[i];
 
             // does object collide with top side of screen?
-            if (o[1] < 0) {
+            if (o.y < 0) {
                 console.log("object " + i + " collided with top wall");
-                o[4] = -o[4];
+                o.yVelocity = -o.yVelocity;
             }
         }
 
@@ -113,16 +113,16 @@ var sketchProc = function(processing) {
             var o = objects[i];
 
             // does object collide with bottom side of screen?
-            if (o[1] > screenSize[1] - o[2]) {
+            if (o.y > screenSize[1] - o.size) {
                 console.log("object " + i + " collided with bottom wall");
-                o[4] = -o[4];
+                o.yVelocity = -o.yVelocity;
             }
         }
 
         // move all objects
         for (var i = 0; i < objects.length; i++) {
-            objects[i][0] += objects[i][3];
-            objects[i][1] += objects[i][4];
+            objects[i].x += objects[i].xVelocity;
+            objects[i].y += objects[i].yVelocity;
         }
 
         // draw all objects
@@ -132,10 +132,10 @@ var sketchProc = function(processing) {
             var currentObject = objects[i];
 
             processing.rect(
-                currentObject[0],  // x
-                currentObject[1],  // y
-                currentObject[2],  // width
-                currentObject[2]); // height (same b/c it is a square)
+                currentObject.x,
+                currentObject.y,
+                currentObject.size,
+                currentObject.size);
         }
 
     };
